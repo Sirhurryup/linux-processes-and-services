@@ -1,3 +1,16 @@
+## Commands Used
+
+| Command | Engineering Purpose |
+|----------|---------------------|
+| `cat /opt/myapp/app.sh` | Inspect the application that systemd will supervise. |
+| `sudo nano /etc/systemd/system/myapp.service` | Create the service definition. |
+| `sudo systemctl daemon-reload` | Reload systemd after adding a new unit file. |
+| `sudo systemctl enable --now myapp` | Enable the service at boot and start it immediately. |
+| `systemctl is-enabled myapp` | Verify startup behavior. |
+| `systemctl is-active myapp` | Verify runtime behavior. |
+| `systemctl show -p Restart --value myapp` | Verify the restart policy matches the business requirement. |
+| `grade` | Validate the implementation against the lab specification. |
+
 # Engineering Principles Earned
 
 ### Principle 1
