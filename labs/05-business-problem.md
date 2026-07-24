@@ -173,3 +173,217 @@ An engineer records the evidence presented by the system rather than assuming in
 > Engineering decisions are based on observable evidence, not expected evidence.
 
 
+### Command
+
+```bash
+cat /etc/fstab
+```
+
+### Evidence Collected
+
+```text
+# UNCONFIGURED FSTAB FOR BASE SYSTEM
+```
+
+### Engineering Observation
+
+The `/etc/fstab` file is normally used to define which filesystems Linux should mount automatically during system startup.
+
+In this training environment, the file is intentionally unconfigured because the underlying infrastructure manages the storage configuration. This differs from a traditional production server where engineers maintain persistent mount definitions.
+
+Rather than assuming an error, the engineer evaluates the evidence within the context of the operating environment.
+
+### Why This Matters
+
+Understanding environmental differences prevents engineers from making incorrect assumptions during investigations. Cloud-managed systems, containers, and training environments often abstract infrastructure components that would normally be visible on traditional Linux servers.
+
+### SirhurryUp Engineering Principle
+
+> Evidence must always be interpreted within the context of the operating environment.
+
+### Command
+
+```bash
+df -h
+```
+
+### Evidence Collected
+
+| Filesystem | Size | Used | Available | Utilization | Mount Point |
+|------------|-----:|-----:|----------:|------------:|-------------|
+| overlay | 30 GB | 3.2 GB | 27 GB | 11% | / |
+| /dev/nvme0n1p1 | 30 GB | 3.2 GB | 27 GB | 11% | /etc/hosts |
+
+### Engineering Observation
+
+The `df -h` command reports storage utilization for mounted filesystems.
+
+The root filesystem is currently using **11%** of its available capacity, leaving approximately **27 GB** of free space.
+
+Based on the collected evidence, there is no indication of storage exhaustion or an immediate operational risk.
+
+This establishes the baseline health of the storage capability before investigating individual directories or files.
+
+### Business Interpretation
+
+The organization's storage capability is operating within acceptable capacity.
+
+Applications retain sufficient free space to continue writing logs, temporary files, and business data without interruption.
+
+No immediate customer impact is expected based on current utilization.
+
+### SirhurryUp Engineering Principle
+
+> Measure the health of the business capability before searching for the cause of a problem.
+
+### Command
+
+```bash
+df -h /var/log
+```
+
+### Evidence Collected
+
+| Directory | Filesystem | Available | Utilization |
+|-----------|------------|----------:|------------:|
+| /var/log | overlay | 27 GB | 11% |
+
+### Engineering Observation
+
+The `/var/log` directory resides on the same filesystem as the root (`/`) filesystem.
+
+Current utilization remains at **11%**, indicating that log storage is not contributing to an immediate storage-related incident.
+
+No additional investigation into log growth is warranted at this stage because the collected evidence shows adequate available capacity.
+
+### Business Capability Assessment (BCA)
+
+The organization's logging capability remains healthy because sufficient storage capacity exists to continue recording operational and security events.
+
+Maintaining available storage for log files ensures engineers can investigate future incidents while allowing business applications to continue operating without interruption.
+
+### SirhurryUp Engineering Principle
+
+> Investigate the specific business capability only after verifying the health of the underlying capability that supports it.
+
+### Command
+
+```bash
+du -sh /var/log
+```
+
+### Evidence Collected
+
+```text
+du: cannot read directory '/var/log/private': Permission denied
+8.9M    /var/log
+```
+
+### Engineering Observation
+
+The `du` command measures the disk space consumed by a directory and its contents.
+
+The `/var/log` directory currently consumes approximately **8.9 MB** of storage.
+
+During the investigation, Linux denied access to the `/var/log/private` directory because the current user does not have sufficient permissions to read its contents. The command still completed successfully and reported the size of the accessible portions of the directory.
+
+### Business Capability Assessment (BCA)
+
+The logging capability is consuming a very small portion of the available storage capacity.
+
+No evidence suggests that log growth is placing the storage capability at operational risk. The permission restriction also demonstrates that Linux protects sensitive log data through access controls, reducing the risk of unauthorized disclosure.
+
+### SirhurryUp Engineering Principle
+
+> Successful investigations acknowledge both the evidence collected and the evidence that could not be collected because of security boundaries.
+### Command
+
+```bash
+sudo du -sh /var/log
+```
+
+### Evidence Collected
+
+```text
+8.9M    /var/log
+```
+
+### Engineering Observation
+
+Running the command with elevated privileges removed the permission restriction encountered during the previous investigation.
+
+The reported size remained **8.9 MB**, confirming that the protected directory did not significantly affect the overall storage consumption of `/var/log`.
+
+Comparing results before and after privilege escalation increases confidence that the collected evidence accurately represents the directory's storage usage.
+
+### Business Capability Assessment (BCA)
+
+The logging capability continues to consume minimal storage resources and presents no measurable risk to the organization's storage capability.
+
+Elevated privileges allowed the engineer to validate the completeness of the investigation without revealing any additional operational concerns.
+
+### SirhurryUp Engineering Principle
+
+> Escalate privileges only when necessary to validate evidence, not as the default starting point.
+
+## Storage Consumption Investigation and Cleanup
+
+### Engineering Question
+
+Which directories and files are consuming storage, and can unnecessary consumption be removed without affecting system operations?
+
+### Commands Used
+
+```bash
+sudo du -sh /* 2>/dev/null | sort -rh | head -10
+sudo find / -type f -size +100M 2>/dev/null
+dd if=/dev/zero of=/tmp/bigfile.dat bs=1M count=50 2>/dev/null
+ls -lh /tmp/bigfile.dat
+sudo find /tmp -type f -size +10M
+sudo rm -rf /tmp/bigfile.dat
+sudo apt clean
+df -h /
+```
+
+### Evidence Collected
+
+The largest top-level directories were:
+
+| Directory | Storage Used |
+|---|---:|
+| `/usr` | 407 MB |
+| `/var` | 28 MB |
+| `/etc` | 2 MB |
+
+A 50 MB test file was created in `/tmp`, successfully detected, and removed.
+
+Two simulated runaway files were later created:
+
+| File | Size |
+|---|---:|
+| `/tmp/runaway-log-2.dat` | 40 MB |
+| `/tmp/runaway-log-1.dat` | 30 MB |
+
+Both files were identified through directory ranking and file-size searches before being removed.
+
+### Engineering Observation
+
+The investigation followed a narrowing process:
+
+1. Rank top-level directories.
+2. Search for unusually large files.
+3. Confirm individual file sizes.
+4. Remove only verified test data.
+5. Recheck filesystem utilization.
+
+The root filesystem remained at approximately **11% utilization** after cleanup. The deleted files were too small relative to the 30 GB filesystem for the rounded percentage to visibly change.
+
+### Business Capability Assessment (BCA)
+
+The storage capability remains healthy and has sufficient capacity to support application data, logs, and temporary operations.
+
+The investigation also demonstrated that engineers can locate and remove abnormal storage consumption without deleting unverified business data.
+
+### SirhurryUp Engineering Principle
+
+> Rank broadly, investigate narrowly, validate precisely, and delete only verified data.
