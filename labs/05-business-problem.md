@@ -145,3 +145,31 @@ We are establishing the storage landscape so future evidence can be interpreted 
 > Never investigate evidence without first understanding the environment that produced it.
 
 
+### Command
+
+```bash
+lsblk -f
+```
+
+### Evidence Collected
+
+| Device | Filesystem | Available | Used | Observation |
+|---------|------------|-----------|------|-------------|
+| nvme0n1 | Not Displayed | — | — | Physical storage device |
+| nvme0n1p1 | Not Displayed | 26.8 GB | 10% | Active partition with available storage information |
+| nvme0n1p127 | Not Displayed | — | — | Reserved partition |
+| nvme0n1p128 | Not Displayed | — | — | Reserved partition |
+
+### Engineering Observation
+
+The `-f` option requests additional filesystem information such as filesystem type, UUID, available capacity, utilization, and mount points.
+
+In this lab environment, not every field is populated because the operating system is running inside a managed container. Even though some metadata is unavailable, the command still provides useful evidence regarding available storage and utilization.
+
+An engineer records the evidence presented by the system rather than assuming information that is not available.
+
+### SirhurryUp Engineering Principle
+
+> Engineering decisions are based on observable evidence, not expected evidence.
+
+
