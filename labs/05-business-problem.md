@@ -49,3 +49,49 @@ Every storage incident begins with a claim.
 Every engineering decision ends with evidence.
 
 SirhurryUp Corporation transforms technical labs into engineering methodologies by connecting technology decisions to business outcomes.
+
+# Business Capability
+
+## Core Capability
+
+Storage provides the organization with the repeatable ability to preserve, protect, and retrieve business information whenever it is needed.
+
+Customers never purchase hard drives, partitions, or filesystems.
+
+They purchase confidence.
+
+They expect their financial records, medical information, application data, and business documents to remain accurate, available, and recoverable whenever business operations require them.
+
+Storage is the business capability that fulfills this expectation.
+
+---
+
+## Business Outcome
+
+When this capability is delivered consistently:
+
+- Customers trust the organization with their information.
+- Employees perform their jobs without interruption.
+- Applications continue operating reliably.
+- Business operations remain resilient.
+- Organizational risk is reduced.
+
+---
+
+## SirhurryUp Corporation Perspective
+
+Technology is never the capability.
+
+Technology enables the capability.
+
+Storage technologies such as disks, partitions, filesystems, and mount points exist to support one business objective:
+
+> Deliver reliable preservation and retrieval of business information so the organization can operate with confidence.
+
+---
+
+## Engineering Principle
+
+Business capabilities describe **what the organization must consistently deliver**.
+
+Technology describes **how engineers make that delivery possible**.
