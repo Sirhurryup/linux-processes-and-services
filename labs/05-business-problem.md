@@ -95,3 +95,18 @@ Storage technologies such as disks, partitions, filesystems, and mount points ex
 Business capabilities describe **what the organization must consistently deliver**.
 
 Technology describes **how engineers make that delivery possible**.
+
+---
+
+## Storage Investigation Foundation
+
+Before investigating a storage incident, the engineer must understand the environment in which the problem exists.
+
+Mapping the storage landscape allows the engineer to work in a deliberate order, identify which storage resources support the affected business service, and collect evidence without creating additional operational risk.
+
+Linux storage follows this path:
+
+```text
+Physical Disk → Partition → Filesystem → Mount Point → Business Data
+
+
