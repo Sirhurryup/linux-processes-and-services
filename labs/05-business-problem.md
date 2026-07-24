@@ -109,4 +109,39 @@ Linux storage follows this path:
 ```text
 Physical Disk → Partition → Filesystem → Mount Point → Business Data
 
+---
+
+## Section 1 – Inspecting the Storage Landscape
+
+### Objective
+
+Before investigating storage utilization, the engineer must identify the storage resources available to the operating system.
+
+### Command
+
+```bash
+lsblk
+```
+
+### Evidence Collected
+
+| Device | Type | Size | Observation |
+|---------|------|------|-------------|
+| nvme0n1 | Physical Disk | 30 GB | Primary storage device attached to the system |
+| nvme0n1p1 | Partition | 30 GB | Mounted and actively used by the operating system |
+| nvme0n1p127 | Partition | 1 MB | Reserved partition |
+| nvme0n1p128 | Partition | 10 MB | Reserved partition |
+
+### Engineering Observation
+
+The investigation begins by identifying the storage devices available to Linux.
+
+At this stage we are **not** determining whether storage is full.
+
+We are establishing the storage landscape so future evidence can be interpreted within the correct context.
+
+### SirhurryUp Principle
+
+> Never investigate evidence without first understanding the environment that produced it.
+
 
