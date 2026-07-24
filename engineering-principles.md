@@ -142,3 +142,8 @@ Technical implementation
 ↓
 
 Operational success
+
+# Principle 11
+
+Business capabilities answer "What promise are we making?" 
+Technology answers "How do we keep that promise?"
