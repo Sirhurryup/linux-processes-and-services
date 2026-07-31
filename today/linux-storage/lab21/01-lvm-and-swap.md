@@ -17,7 +17,7 @@ Logical Volume Manager (LVM) solves this problem by introducing a flexible stora
 ---
 
 # Engineering Workflow
-
+```
 Create Physical Volume
 ↓
 Create Volume Group
@@ -37,7 +37,7 @@ Resize Filesystem
 Configure Swap
 ↓
 Validate
-
+```
 ---
 
 # Commands to Understand
