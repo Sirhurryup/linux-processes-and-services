@@ -242,24 +242,68 @@ Log rotation is an operational control that quietly protects business continuity
 
 # Vocabulary
 
-Log Rotation
+### Log Rotation
 
-Retention
+The automated process of renaming, compressing, and removing old log files while creating a new active log to prevent disks from filling.
 
-Compression
+---
 
-Archive
+### Retention
 
-Rotation Policy
+The business-defined period or number of historical log files that should be kept before deletion.
 
-Global Configuration
+---
 
-Service Configuration
+### Compression
 
-Debug Mode
+Reducing the storage size of older log files to conserve disk space.
 
-Forced Rotation
+---
 
-Retention Window
+### Archive
+
+A historical copy of a log or collection of files preserved for future reference or recovery.
+
+---
+
+### Rotation Policy
+
+The collection of rules that determines when logs rotate, how many copies are kept, whether they are compressed, and how new logs are created.
+
+---
+
+### Global Configuration
+
+The default settings that apply to all services unless specifically overridden.
+
+---
+
+### Service Configuration
+
+A configuration file that customizes log rotation behavior for a specific application or service.
+
+---
+
+### Debug Mode
+
+A validation mode that shows what logrotate would do without making any changes.
+
+---
+
+### Forced Rotation
+
+An immediate log rotation regardless of the normal schedule, commonly used for testing new policies.
+
+---
+
+### Retention Window
+
+The amount of historical log data maintained before older logs are deleted.
+
+---
+
+### Business Continuity
+
+The ability of a system to continue operating by preventing avoidable failures such as disk-full incidents.
 
 Business Continuity
