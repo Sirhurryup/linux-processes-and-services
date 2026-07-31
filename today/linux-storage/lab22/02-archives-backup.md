@@ -75,21 +75,172 @@ Restore
 
 ---
 
-# Key Commands
+## Command Options (Flags) to Understand
+
+### tar -czf
+
+Creates a gzip-compressed archive.
+
+- **c** = Create a new archive.
+- **z** = Compress the archive using **gzip**.
+- **f** = Write the archive to the specified filename.
+
+Example:
 
 ```bash
-tar -czf
-tar -tzf
-tar -xzf
-
-tar -cjf
-tar -cJf
-
-rsync -av
-rsync -av --delete
+tar -czf backup.tar.gz myproject/
 ```
 
+Creates a gzip-compressed archive named `backup.tar.gz`.
+
 ---
+
+### tar -cjf
+
+Creates a bzip2-compressed archive.
+
+- **c** = Create a new archive.
+- **j** = Compress using **bzip2**.
+- **f** = Write the archive to the specified filename.
+
+Example:
+
+```bash
+tar -cjf backup.tar.bz2 myproject/
+```
+
+Produces a `.tar.bz2` archive with a higher compression ratio than gzip, but generally requires more processing time.
+
+---
+
+### tar -cJf
+
+Creates an xz-compressed archive.
+
+- **c** = Create a new archive.
+- **J** = Compress using **XZ**.
+- **f** = Write the archive to the specified filename.
+
+Example:
+
+```bash
+tar -cJf backup.tar.xz myproject/
+```
+
+Produces the smallest archive in many cases but is typically the slowest compression method. (The XZ utility was not installed in this lab.)
+
+---
+
+### tar -tzf
+
+Lists the contents of a gzip-compressed archive without extracting it.
+
+- **t** = Display the table of contents.
+- **z** = Read a gzip-compressed archive.
+- **f** = Read the specified archive file.
+
+Example:
+
+```bash
+tar -tzf backup.tar.gz
+```
+
+Useful for verifying a backup before performing a restore.
+
+---
+
+### tar -xzf
+
+Extracts a gzip-compressed archive.
+
+- **x** = Extract files.
+- **z** = Read a gzip-compressed archive.
+- **f** = Read the specified archive file.
+
+Example:
+
+```bash
+tar -xzf backup.tar.gz
+```
+
+Restores the archived files into the current directory.
+
+---
+
+### tar -C
+
+Temporarily changes to another directory before performing the requested operation.
+
+Example:
+
+```bash
+tar -czf backup.tar.gz -C /tmp myproject
+```
+
+Instead of storing:
+
+```
+/tmp/myproject/
+```
+
+the archive stores:
+
+```
+myproject/
+```
+
+This creates cleaner, more portable archives.
+
+---
+
+# Engineering Memory Tip
+
+The **first letter** tells **what** you want to do:
+
+- **c** = Create
+- **t** = Table of contents (List)
+- **x** = Extract
+
+The **middle letter(s)** describe **how** the archive is compressed:
+
+- **z** = Gzip (`.gz`)
+- **j** = Bzip2 (`.bz2`)
+- **J** = XZ (`.xz`)
+
+The **last letter** tells Linux that the **next argument is the filename**:
+
+- **f** = File
+
+Think of it as:
+
+```
+Action
+↓
+
+Compression
+↓
+
+Filename
+```
+
+Examples:
+
+```text
+tar -czf
+Create → Gzip → File
+
+tar -cjf
+Create → Bzip2 → File
+
+tar -cJf
+Create → XZ → File
+
+tar -tzf
+List → Gzip → File
+
+tar -xzf
+Extract → Gzip → File
+```
 
 # Evidence Collected
 
