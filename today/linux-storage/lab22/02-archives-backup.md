@@ -164,22 +164,90 @@ rsync -av --delete
 
 # Vocabulary
 
-Archive
+### Archive
 
-Compression
+A single file that bundles one or more files and directories together for storage, backup, or transfer.
 
-Restore
+---
 
-Snapshot
+### Tar (Tape Archive)
 
-Incremental Backup
+A Linux utility used to create, list, extract, and manage archive files while preserving directory structure and file permissions.
 
-Synchronization
+---
 
-Mirror
+### Compression
 
-Retention
+The process of reducing a file's size to save storage space and decrease transfer time.
 
-Dry Run
+---
 
-Trailing Slash
+### Gzip
+
+A compression utility that reduces file size using the DEFLATE compression algorithm. Commonly used with `tar` to create `.tar.gz` archives.
+
+---
+
+### Bzip2
+
+A compression utility that generally achieves higher compression ratios than gzip but requires more processing time.
+
+---
+
+### XZ
+
+A high-compression utility that typically produces the smallest archives but requires the greatest amount of CPU time. (In this lab, the required `xz` utility was not installed.)
+
+---
+
+### Recursive Backup
+
+A backup that includes every file and subdirectory beneath the specified source directory.
+
+---
+
+### Restore
+
+The process of extracting archived files back into a usable directory structure.
+
+---
+
+### Working Directory
+
+The current directory from which a command executes. Commands like `tar -C` temporarily change the working directory before processing files.
+
+---
+
+### Relative Path
+
+A file or directory location interpreted from the current working directory rather than from the root (`/`) of the filesystem.
+
+---
+
+### Absolute Path
+
+A complete file path beginning at the root directory (`/`) that uniquely identifies a resource regardless of the current working directory.
+
+---
+
+### Artifact
+
+The final deliverable produced by an engineering process. In this lab, the backup archive (`.tar.gz`) is the artifact.
+
+---
+
+### Verification
+
+The process of confirming that an archive was created correctly by inspecting its contents before relying on it for recovery.
+
+---
+
+### Backup
+
+A protected copy of data created to support recovery after accidental deletion, corruption, hardware failure, or disaster.
+
+---
+
+### Restore Validation
+
+The process of confirming that recovered files are complete, readable, and match the original data after extraction.
