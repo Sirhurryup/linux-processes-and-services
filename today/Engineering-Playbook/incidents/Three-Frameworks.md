@@ -47,3 +47,4 @@ Who owns the next step?
 Business Recommendation
 ```
 
+The foundation teaches me the system. The incident determines my entry point into the system.
