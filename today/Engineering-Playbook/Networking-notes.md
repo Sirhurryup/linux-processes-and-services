@@ -74,3 +74,14 @@ Network             ping
 Routing             ip route
 ------------------------------
 Interface           ip addr
+
+# Each command has **one responsibillity**
+
+| Question                         | Tool       | Responsibility     |
+| -------------------------------- | ---------- | ------------------ |
+| Who am I?                        | `ip addr`  | Identity           |
+| Where do I send packets?         | `ip route` | Routing            |
+| Can I reach my first dependency? | `ping`     | Connectivity       |
+| Can I translate names?           | `dig`      | Name Resolution    |
+| Can the application respond?     | `curl`     | Application Health |
+
