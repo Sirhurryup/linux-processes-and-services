@@ -63,4 +63,14 @@ Notice this is no longer a checklist of commands.
 
 It's a sequence of engineering questions.
 
+# Think Like the OSI Model
 
+Application         curl
+------------------------------
+Name Resolution     dig
+------------------------------
+Network             ping
+------------------------------
+Routing             ip route
+------------------------------
+Interface           ip addr
