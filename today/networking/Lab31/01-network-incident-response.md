@@ -578,3 +578,4 @@ That question always leads to the correct investigation.
 | Connection Refused | No application listening         |
 | Name not resolved  | DNS problem                      |
 
+A great diagnostic table to remember.
