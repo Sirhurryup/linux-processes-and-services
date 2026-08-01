@@ -31,3 +31,36 @@ Each answer unlocks the next question.
 | Can I retrieve a web page?       | `curl` |
 
 Each tool investigates a different layer. 
+
+
+# Build a Habit 
+Every time you choose a host to test, ask yourself these three questions: 
+
+1. Is it in my subnet?
+
+If yes, Linux delivers directly.
+
+2. Is it outside my subnet?
+
+If yes, Linux must use the default gateway.
+
+3. Why am I choosing this host?
+
+Every test should answer one question.
+
+# Engineering Habit 
+
+When troubleshooting networking:
+
+Who am I? → ip addr
+Where will packets go? → ip route
+Can I reach my first hop? → ping <default gateway>
+Can I reach another known host by IP?
+Can I resolve names? → dig
+Can I reach the application? → curl
+
+Notice this is no longer a checklist of commands.
+
+It's a sequence of engineering questions.
+
+
