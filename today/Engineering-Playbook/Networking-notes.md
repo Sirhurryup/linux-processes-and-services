@@ -20,3 +20,13 @@ Can I resolve DNS?
 
 Can I reach an application?
 ```
+Each answer unlocks the next question.
+
+# That's why we use different tools for different questions.
+
+Question	Tool
+Is another host reachable by IP?	ping
+Can I resolve a hostname?	dig
+Can I retrieve a web page?	curl
+
+Each tool investigates a different layer.
