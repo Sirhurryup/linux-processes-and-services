@@ -111,112 +111,169 @@ ALLOW or DENY
 
 # Commands to Understand
 
-## ufw status
+## `sudo ufw status`
 
-Displays firewall status.
+Displays whether the firewall is active or inactive.
 
-Engineering Question
+**Engineering Question**
 
-> Is the firewall protecting this server?
+> Is the firewall currently protecting this server?
 
 ---
 
-## ufw status verbose
+## `sudo ufw status verbose`
 
 Displays:
 
-- Firewall state
+- Firewall status
 - Default policies
-- Active rules
+- Active firewall rules
 
-Engineering Question
+**Engineering Question**
 
-> What security policy protects this server?
-
----
-
-## ufw status numbered
-
-Displays rules with rule numbers.
-
-Engineering Question
-
-> Which rule should I modify or delete?
+> What security policy is protecting this server?
 
 ---
 
-## ufw enable
+## `sudo ufw status numbered`
 
-Enables the firewall.
+Displays firewall rules with line numbers.
 
-Engineering Question
+**Engineering Question**
 
-> Is the firewall actively protecting the system?
+> Which specific firewall rule needs to be modified or removed?
 
 ---
 
-## ufw disable
+## `sudo ufw enable`
+
+Enables the firewall and configures it to start automatically at boot.
+
+**Engineering Question**
+
+> Is firewall protection currently enforced?
+
+---
+
+## `sudo ufw disable`
 
 Disables firewall enforcement.
 
-Engineering Question
+**Engineering Question**
 
-> Is traffic currently unrestricted?
-
----
-
-## ufw allow 80/tcp
-
-Allows HTTP traffic.
-
-Flags
-
-- allow = Permit traffic
-- tcp = TCP protocol
-
-Engineering Question
-
-> Which business service should be reachable?
+> Is all network traffic currently unrestricted?
 
 ---
 
-## ufw deny 9229/tcp
+## `sudo ufw allow 80/tcp`
 
-Explicitly blocks traffic.
+Allows incoming HTTP traffic on TCP port 80.
 
-Engineering Question
+**Breakdown**
 
-> Which service should never be exposed?
+- `allow` = Permit traffic
+- `80` = HTTP port
+- `tcp` = TCP protocol
 
----
+**Engineering Question**
 
-## ufw allow from 10.0.1.0/24 to any port 5432
-
-Restricts access by source network.
-
-Engineering Question
-
-> Who should be allowed to access this service?
+> Which business service should be reachable from the network?
 
 ---
 
-## ufw delete
+## `sudo ufw allow 443/tcp`
 
-Removes a firewall rule.
+Allows incoming HTTPS traffic.
 
-Engineering Question
+**Breakdown**
 
-> How do I safely modify firewall policy?
+- `443` = HTTPS
+- `tcp` = TCP protocol
+
+**Engineering Question**
+
+> Is secure web traffic allowed?
 
 ---
 
-## ufw reset
+## `sudo ufw allow 22/tcp`
 
-Removes all firewall rules.
+Allows SSH administrative access.
 
-Engineering Question
+**Breakdown**
 
-> How do I rebuild the firewall from a clean state?
+- `22` = SSH
+- `tcp` = TCP protocol
+
+**Engineering Question**
+
+> Can administrators remotely manage this server?
+
+---
+
+## `sudo ufw deny 9229/tcp`
+
+Explicitly blocks access to the Node.js debugging port.
+
+**Breakdown**
+
+- `deny` = Reject traffic
+- `9229` = Node.js Debug Port
+- `tcp` = TCP protocol
+
+**Engineering Question**
+
+> Which service should never be exposed to users?
+
+---
+
+## `sudo ufw allow from 10.0.1.0/24 to any port 5432`
+
+Allows PostgreSQL connections only from the application subnet.
+
+**Breakdown**
+
+- `allow` = Permit traffic
+- `from` = Source network
+- `10.0.1.0/24` = Trusted subnet
+- `to any port` = Destination port
+- `5432` = PostgreSQL
+
+**Engineering Question**
+
+> Who is authorized to access this database?
+
+---
+
+## `sudo ufw delete <rule-number>`
+
+Deletes a firewall rule by its rule number.
+
+**Engineering Question**
+
+> How do I safely remove one firewall rule without affecting others?
+
+---
+
+## `sudo ufw delete allow from 10.0.1.0/24 to any port 5432`
+
+Deletes a firewall rule by specifying the entire rule instead of its number.
+
+**Engineering Question**
+
+> How can I remove a rule even if its number changes?
+
+---
+
+## `sudo ufw reset`
+
+Removes all firewall rules and returns UFW to its default state.
+
+---
+
+**Engineering Question**
+
+> How do I rebuild the firewall from a clean configuration?
 
 ---
 
