@@ -569,3 +569,12 @@ Instead ask:
 > "Can the customer successfully use the service?"
 
 That question always leads to the correct investigation.
+
+## Principle Reinforced 
+
+| Symptom            | Likely Cause                     |
+| ------------------ | -------------------------------- |
+| Timeout            | Firewall DROP / packet filtering |
+| Connection Refused | No application listening         |
+| Name not resolved  | DNS problem                      |
+
