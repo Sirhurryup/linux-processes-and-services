@@ -252,3 +252,159 @@ A network engineer translates that into technical questions instead of making as
 
 Evidence is collected one layer at a time until the failure domain is isolated.
 
+# Vocabulary
+
+### Network Interface
+
+A physical or virtual network connection through which a computer sends and receives network traffic.
+
+---
+
+### IP Address
+
+A logical address assigned to a network interface that uniquely identifies a device on a network.
+
+---
+
+### Loopback Interface (lo)
+
+A virtual interface used by a computer to communicate with itself. It always uses the address `127.0.0.1` and never leaves the machine.
+
+---
+
+### Gateway (Default Gateway)
+
+The router that forwards traffic from the local network to other networks when the destination is not local.
+
+---
+
+### Routing Table
+
+A list of routes used by Linux to determine how packets reach their destination.
+
+---
+
+### Route
+
+A path that tells the operating system where to send network traffic.
+
+---
+
+### DNS (Domain Name System)
+
+A distributed service that translates human-readable names (such as `google.com`) into IP addresses.
+
+---
+
+### Resolver
+
+The DNS server that performs hostname lookups on behalf of a client.
+
+---
+
+### Name Resolution
+
+The process of converting a hostname into an IP address.
+
+---
+
+### A Record
+
+A DNS record that maps a hostname to an IPv4 address.
+
+---
+
+### Packet
+
+The basic unit of data transmitted across a network.
+
+---
+
+### ICMP (Internet Control Message Protocol)
+
+A network diagnostic protocol used to determine whether another host can respond to an ICMP Echo Request.
+
+ICMP does not transfer application data.
+
+It is primarily used for:
+
+- Reachability testing
+- Network diagnostics
+- Error reporting
+
+The `ping` command uses ICMP.
+
+Important:
+
+A failed ICMP test does **not** prove that HTTP, HTTPS, SSH, or other application protocols are unavailable.
+
+### Ping
+
+A diagnostic utility that uses ICMP to determine whether another host responds to network echo requests.
+
+---
+
+### HTTP
+
+The Hypertext Transfer Protocol used by web applications to exchange requests and responses.
+
+Unlike ICMP, HTTP transfers application data between clients and servers.
+
+The `curl` command is commonly used to test HTTP and HTTPS communication.
+
+---
+
+### HTTPS
+
+The encrypted version of HTTP that protects communication using TLS (Transport Layer Security).
+
+HTTPS is the standard protocol used by secure web applications.
+
+---
+
+### Curl
+
+A command-line utility used to communicate with application-layer protocols such as HTTP and HTTPS.
+
+---
+
+### Socket
+
+A communication endpoint used by an application to send or receive network traffic.
+
+---
+
+### Listening Socket
+
+A socket that is actively waiting for incoming client connections.
+
+---
+
+### Port
+
+A logical communication endpoint that identifies a specific application or service running on a host.
+
+---
+
+### SSH (Secure Shell)
+
+A protocol used to securely administer remote Linux systems. By default, SSH listens on TCP port 22.
+
+---
+
+### Process
+
+A running instance of a program.
+
+In networking, a process owns one or more sockets used for communication.
+
+---
+
+### Process Ownership
+
+The relationship between a network socket and the application responsible for that socket.
+
+The `ss -p` option displays the owning process.
+
+
+
