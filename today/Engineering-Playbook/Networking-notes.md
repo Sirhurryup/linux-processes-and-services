@@ -85,3 +85,7 @@ Interface           ip addr
 | Can I translate names?           | `dig`      | Name Resolution    |
 | Can the application respond?     | `curl`     | Application Health |
 
+# My framework is built off dependencies to seek the truth.
+
+Every single step leads toward 
+Question → Evidence → Interpretation → Next Question
