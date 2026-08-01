@@ -1,4 +1,7 @@
 # Mode 1 
+
+This mode teaches the system. 
+
 Start at Layer 1 and prove everything. 
 
 ```
