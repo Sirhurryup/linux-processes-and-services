@@ -39,6 +39,7 @@ Can I resolve DNS?
 Can I reach an application?
 ```
 Each answer unlocks the next question.
+**Own the foundation, not the order.**
 
 # That's why we use different tools for different questions.
 
