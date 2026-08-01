@@ -2,24 +2,31 @@
 
 This mode applies the system. 
 
+# Incident Investigation Framework
+
 ```
 Customer Problem
-↓
+        ↓
 Can I reproduce it?
-↓
+        ↓
+What dependency is failing?
+        ↓
 Application
-↓
+        ↓
 Service
-↓
+        ↓
 Socket
-↓
+        ↓
 Firewall
-↓
+        ↓
 Routing
-↓
+        ↓
 Interface
 ```
 
+# Process 
+
+```
 Ticket
 
 ↓
@@ -45,6 +52,10 @@ Interpret evidence.
 ↓
 
 Next dependency.
+
+```
+
+
 
 # Toolbelt 
 
