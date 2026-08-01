@@ -88,4 +88,5 @@ Interface           ip addr
 # My framework is built off dependencies to seek the truth.
 
 Every single step leads toward 
+
 Question → Evidence → Interpretation → Next Question
