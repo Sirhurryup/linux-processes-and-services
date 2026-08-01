@@ -17,7 +17,7 @@ The engineer's responsibility is to expose only the services required by the bus
 ---
 
 # Core Architecture
-
+```
                      Internet
                          │
          ┌───────────────┴───────────────┐
@@ -40,7 +40,7 @@ The engineer's responsibility is to expose only the services required by the bus
 
            PostgreSQL (5432)
       Allow ONLY from 10.0.1.0/24
-
+```
 ---
 
 # Engineering Workflow
