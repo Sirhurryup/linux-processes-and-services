@@ -579,3 +579,5 @@ That question always leads to the correct investigation.
 | Name not resolved  | DNS problem                      |
 
 A great diagnostic table to remember.
+
+**Every successful investigation eliminates possibilities until only the root cause remains.**
